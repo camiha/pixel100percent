@@ -19,10 +19,6 @@ function App() {
 
 	const handleOnValueChange = (value: number) => {
 		setImageOpacity(value / 100);
-		document.documentElement.style.setProperty(
-			"--chakra-colors-chakra-body-bg",
-			"transparent",
-		);
 	};
 
 	const handleClearImage = () => {
