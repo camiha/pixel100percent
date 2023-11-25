@@ -8,17 +8,23 @@ import {
 	PopoverTrigger,
 	useDisclosure,
 } from "@chakra-ui/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { SlFrame } from "react-icons/sl";
 
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
-import { useState } from "react";
+
+type Inputs = {
+	height: number;
+	width: number;
+};
 
 export const ControlWindowsizeButton = () => {
-	const [windowSize, setWindowSize] = useState({ width: 750, height: 600 });
 	const { isOpen, onToggle, onClose } = useDisclosure();
+	const { register, handleSubmit } = useForm<Inputs>();
 
-	const handleUpdate = () => {
-		window.resizeTo(windowSize.width, windowSize.height);
+	const onSubmit: SubmitHandler<Inputs> = (data) => {
+		console.log(data);
+		window.resizeTo(data.width, data.height);
 		onClose();
 	};
 
@@ -32,45 +38,31 @@ export const ControlWindowsizeButton = () => {
 			<PopoverContent maxWidth={200}>
 				<PopoverArrow />
 				<PopoverBody>
-					<Flex gap={2} flexDirection="column">
-						<Flex gap={2}>
-							<FormControl>
-								<FormLabel size="xs">width</FormLabel>
-								<NumberInput
-									size="xs"
-									defaultValue={750}
-									min={300}
-									onChange={(value) => {
-										setWindowSize({
-											...windowSize,
-											width: parseInt(value, 10),
-										});
-									}}
-								>
-									<NumberInputField />
-								</NumberInput>
-							</FormControl>
-							<FormControl>
-								<FormLabel size="xs">height</FormLabel>
-								<NumberInput
-									size="xs"
-									defaultValue={600}
-									min={300}
-									onChange={(value) => {
-										setWindowSize({
-											...windowSize,
-											height: parseInt(value, 10),
-										});
-									}}
-								>
-									<NumberInputField />
-								</NumberInput>
-							</FormControl>
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<Flex gap={2} flexDirection="column">
+							<Flex gap={2}>
+								<FormControl>
+									<FormLabel size="xs">width</FormLabel>
+									<NumberInput size="xs" defaultValue={750} min={300}>
+										<NumberInputField
+											{...register("width", { required: true })}
+										/>
+									</NumberInput>
+								</FormControl>
+								<FormControl>
+									<FormLabel size="xs">height</FormLabel>
+									<NumberInput size="xs" defaultValue={600} min={300}>
+										<NumberInputField
+											{...register("height", { required: true })}
+										/>
+									</NumberInput>
+								</FormControl>
+							</Flex>
+							<Button type="submit" size="sm">
+								Update
+							</Button>
 						</Flex>
-						<Button size="sm" onClick={handleUpdate}>
-							Update
-						</Button>
-					</Flex>
+					</form>
 				</PopoverBody>
 				<PopoverCloseButton />
 			</PopoverContent>

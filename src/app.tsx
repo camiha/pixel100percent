@@ -34,8 +34,7 @@ function App() {
 			onMouseLeave={handleMouseLeave}
 			onMouseOver={handleMouseOver}
 			position="relative"
-			// backgroundColor={imageData === "" ? "white" : "transparent"}
-			backgroundColor={"white"}
+			backgroundColor={imageData === "" ? "white" : "transparent"}
 			minHeight="100vh"
 			width="100vw"
 		>
