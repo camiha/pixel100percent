@@ -74,7 +74,7 @@ function App() {
 				{imageData && (
 					<img
 						src={imageData}
-						alt="uploaded"
+						alt=""
 						style={{
 							position: "relative",
 							zIndex: 99,
