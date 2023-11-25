@@ -29,12 +29,14 @@ const theme = extendTheme({
 				solid: {
 					bgColor: "white",
 					color: "black",
+					fontWeight: 400,
 				},
 				outline: {
 					border: "1px solid",
 					borderColor: "gray.200",
 					bgColor: "white",
 					color: "black",
+					fontWeight: 400,
 				},
 			},
 			defaultProps: {
