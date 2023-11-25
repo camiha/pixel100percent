@@ -114,9 +114,11 @@ function App() {
 							opacity={isMouseOver ? 1 : 0}
 							transition="opacity 0.2s ease-in-out"
 						>
-							<Button onClick={handleClearImage}>
-								<Icon as={SlTrash} />
-							</Button>
+							<IconButton
+								aria-label="Clear Image"
+								onClick={handleClearImage}
+								icon={<Icon as={SlTrash} />}
+							/>
 						</Flex>
 						<SliderOpacity
 							isMouseOver={isMouseOver}
@@ -139,7 +141,7 @@ function App() {
 							variant={imageData ? "solid" : "outline"}
 						/>
 					</Box>
-					<Button
+					<IconButton
 						opacity={imageData ? (isMouseOver ? 1 : 0.25) : 1}
 						transition="opacity 0.2s ease-in-out"
 						variant={imageData ? "solid" : "outline"}
@@ -148,9 +150,9 @@ function App() {
 							cursor: "move",
 							WebkitAppRegion: "drag",
 						}}
-					>
-						<Icon as={SlCursorMove} />
-					</Button>
+						aria-label="Move Window"
+						icon={<Icon as={SlCursorMove} />}
+					/>
 				</Flex>
 			</Flex>
 		</Box>

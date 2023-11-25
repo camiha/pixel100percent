@@ -1,4 +1,11 @@
-import { Button, Flex, FormControl, FormLabel, Icon } from "@chakra-ui/react";
+import {
+	Button,
+	Flex,
+	FormControl,
+	FormLabel,
+	Icon,
+	IconButton,
+} from "@chakra-ui/react";
 import {
 	Popover,
 	PopoverArrow,
@@ -34,9 +41,12 @@ export const ControlWindowsizeButton = ({
 	return (
 		<Popover placement="right" isOpen={isOpen} onClose={onClose}>
 			<PopoverTrigger>
-				<Button onClick={onToggle} variant={variant}>
-					<Icon as={SlFrame} />
-				</Button>
+				<IconButton
+					aria-label="Open change window size menu"
+					variant={variant}
+					onClick={onToggle}
+					icon={<Icon as={SlFrame} />}
+				/>
 			</PopoverTrigger>
 			<PopoverContent maxWidth={200}>
 				<PopoverArrow />
