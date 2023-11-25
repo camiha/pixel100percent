@@ -92,7 +92,6 @@ function App() {
 							opacity={isMouseOver ? 1 : 0}
 							transition="opacity 0.2s ease-in-out"
 						>
-							<ControlWindowsizeButton />
 							<Button onClick={handleClearImage}>
 								<Icon as={SlTrash} />
 							</Button>
@@ -110,9 +109,21 @@ function App() {
 					gap={2}
 					direction="column"
 				>
+					<Box
+						opacity={imageData ? (isMouseOver ? 1 : 0) : 1}
+						transition="opacity 0.2s ease-in-out"
+					>
+						<ControlWindowsizeButton
+							variant={imageData ? "solid" : "outline"}
+						/>
+					</Box>
 					<Button
-						opacity={isMouseOver ? 1 : 0.2}
+						opacity={imageData ? (isMouseOver ? 1 : 0.25) : 1}
+						transition="opacity 0.2s ease-in-out"
+						variant={imageData ? "solid" : "outline"}
+						_hover="none"
 						sx={{
+							cursor: "move",
 							WebkitAppRegion: "drag",
 						}}
 					>

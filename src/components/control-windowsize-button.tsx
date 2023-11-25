@@ -18,7 +18,11 @@ type Inputs = {
 	width: number;
 };
 
-export const ControlWindowsizeButton = () => {
+export const ControlWindowsizeButton = ({
+	variant,
+}: {
+	variant: "outline" | "solid";
+}) => {
 	const { isOpen, onToggle, onClose } = useDisclosure();
 	const { register, handleSubmit } = useForm<Inputs>();
 
@@ -30,7 +34,7 @@ export const ControlWindowsizeButton = () => {
 	return (
 		<Popover placement="right" isOpen={isOpen} onClose={onClose}>
 			<PopoverTrigger>
-				<Button onClick={onToggle}>
+				<Button onClick={onToggle} variant={variant}>
 					<Icon as={SlFrame} />
 				</Button>
 			</PopoverTrigger>
@@ -59,7 +63,7 @@ export const ControlWindowsizeButton = () => {
 									</NumberInput>
 								</FormControl>
 							</Flex>
-							<Button type="submit" size="sm" variant="outline">
+							<Button type="submit" size="sm">
 								Update
 							</Button>
 						</Flex>
