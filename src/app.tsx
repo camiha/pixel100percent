@@ -61,7 +61,7 @@ function App() {
 				transition="opacity 0.2s ease-in-out"
 			>
 				<Heading as="h1" size="xs">
-					pixel100percent
+					pixelcomplete
 				</Heading>
 				<Heading as="p" size="xs" fontWeight={500}>
 					⌘ + Q for quit App
