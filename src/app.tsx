@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 
 import {
 	Slider,
@@ -25,20 +25,53 @@ function App() {
 		);
 	};
 
+	const handleClearImage = () => {
+		setImageData("");
+	};
+
 	return (
 		<Box>
 			<Flex
-				direction="column"
-				gap="1"
-				p="4"
-				position="relative"
-				height="100%"
+				position="fixed"
+				justify="space-between"
+				gap={1}
+				p={3}
+				top={0}
 				width="100%"
+				zIndex={9999}
+				sx={{
+					"-webkit-app-region": "drag",
+				}}
+				color="black"
+				backgroundColor="white"
 			>
-				<Heading as="h1">pixel100percent</Heading>
+				<Heading as="h1" size="xs">
+					pixel100percent
+				</Heading>
+				<Heading as="p" size="xs">
+					⌘ + q for quit App
+				</Heading>
+			</Flex>
+			{/* )} */}
+			{!imageData && <ImageDropzone setImageData={setImageData} />}
+
+			<Flex opacity={imageOpacity}>
+				{imageData && (
+					<img
+						src={imageData}
+						alt="uploaded"
+						style={{
+							position: "relative",
+							zIndex: 99,
+							width: "100%",
+							height: "100%",
+							backgroundImage: `url('${imageData}')`,
+						}}
+					/>
+				)}
 			</Flex>
 
-			<Flex position="fixed" width="full" bottom={0} zIndex={999}>
+			<Flex position="fixed" width="full" bottom={0} zIndex={9999}>
 				<Flex
 					direction="column"
 					justify="center"
@@ -63,20 +96,11 @@ function App() {
 					</Slider>
 				</Flex>
 			</Flex>
-			<ImageDropzone setImageData={setImageData} />
-			{imageData && (
-				<Flex>
-					<img
-						src={imageData}
-						alt="uploaded"
-						style={{
-							width: "100%",
-							backgroundImage: `url('${imageData}')`,
-							opacity: imageOpacity,
-						}}
-					/>
-				</Flex>
-			)}
+			<Flex position="fixed" bottom={4} zIndex={9999} right={4}>
+				<Button size="sm" onClick={handleClearImage}>
+					Clear
+				</Button>
+			</Flex>
 		</Box>
 	);
 }

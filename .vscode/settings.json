@@ -17,6 +17,8 @@
     "editor.defaultFormatter": "biomejs.biome",
   },
   "cSpell.words": [
-    "Chakra"
+    "Chakra",
+    "fontsource",
+    "Titillium"
   ],
 }

@@ -11,5 +11,8 @@ body {
 }
 
 h1 {
+  -webkit-user-drag: none;
   -webkit-app-region: drag;
+  
 }
+
