@@ -3,13 +3,7 @@ import { SlCursorMove, SlTrash } from "react-icons/sl";
 
 import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
 
-import {
-	Slider,
-	SliderFilledTrack,
-	SliderThumb,
-	SliderTrack,
-} from "@chakra-ui/react";
-
+import { ControlWindowsizeButton } from "./components/control-windowsize-button";
 import { ImageDropzone } from "./components/image-dropzone";
 import { SliderOpacity } from "./components/slider-opacity";
 
@@ -40,7 +34,8 @@ function App() {
 			onMouseLeave={handleMouseLeave}
 			onMouseOver={handleMouseOver}
 			position="relative"
-			backgroundColor={imageData === "" ? "white" : "transparent"}
+			// backgroundColor={imageData === "" ? "white" : "transparent"}
+			backgroundColor={"white"}
 			minHeight="100vh"
 			width="100vw"
 		>
@@ -94,12 +89,11 @@ function App() {
 						bottom={0}
 						gap={2}
 						direction="column"
+						opacity={isMouseOver ? 1 : 0}
+						transition="opacity 0.2s ease-in-out"
 					>
-						<Button
-							onClick={handleClearImage}
-							opacity={isMouseOver ? 1 : 0}
-							transition="opacity 0.2s ease-in-out"
-						>
+						<ControlWindowsizeButton />
+						<Button onClick={handleClearImage}>
 							<Icon as={SlTrash} />
 						</Button>
 					</Flex>
