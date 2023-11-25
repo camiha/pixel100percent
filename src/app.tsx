@@ -4,7 +4,7 @@ import { useState } from "react";
 function App() {
 	const [windowOpacity, setWindowOpacity] = useState([100]);
 
-	const handleOnValueCommit = (value: number[]) => {
+	const handleOnValueChange = (value: number[]) => {
 		setWindowOpacity(value);
 		document.documentElement.style.setProperty(
 			"--color-page-background",
@@ -20,8 +20,9 @@ function App() {
 				<Button>Let's go</Button>
 				<Box p="2">
 					<Slider
+						min={10}
 						defaultValue={windowOpacity}
-						onValueCommit={handleOnValueCommit}
+						onValueChange={handleOnValueChange}
 					/>
 				</Box>
 			</Flex>
