@@ -26,5 +26,5 @@
  * ```
  */
 
-import './index.css';
+import '@radix-ui/themes/styles.css';
 import './main.tsx';
