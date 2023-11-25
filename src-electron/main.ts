@@ -38,22 +38,29 @@ const createWindow = () => {
 
 	mainWindow.setAlwaysOnTop(true, "floating");
 	mainWindow.webContents.on("before-input-event", (event, input) => {
-		if (input.type === "keyDown") {
-			const pos = mainWindow.getPosition();
-			switch (input.key) {
-				case "ArrowUp":
-					mainWindow.setPosition(pos[0], pos[1] - 1);
-					break;
-				case "ArrowDown":
-					mainWindow.setPosition(pos[0], pos[1] + 1);
-					break;
-				case "ArrowLeft":
-					mainWindow.setPosition(pos[0] - 1, pos[1]);
-					break;
-				case "ArrowRight":
-					mainWindow.setPosition(pos[0] + 1, pos[1]);
-					break;
-			}
+		if (input.type !== "keyDown") {
+			return;
+		}
+
+		const pos = mainWindow.getPosition();
+
+		switch (input.key) {
+			case "ArrowUp":
+				event.preventDefault();
+				mainWindow.setPosition(pos[0], pos[1] - 1);
+				break;
+			case "ArrowDown":
+				event.preventDefault();
+				mainWindow.setPosition(pos[0], pos[1] + 1);
+				break;
+			case "ArrowLeft":
+				event.preventDefault();
+				mainWindow.setPosition(pos[0] - 1, pos[1]);
+				break;
+			case "ArrowRight":
+				event.preventDefault();
+				mainWindow.setPosition(pos[0] + 1, pos[1]);
+				break;
 		}
 	});
 };
