@@ -50,7 +50,7 @@ export const ImageDropzone = ({
 						<input {...getInputProps()} />
 						<Icon as={SlPicture} width={8} height={8} />
 						<Text fontWeight="bold" textAlign="center">
-							drop files here, or click to select files.
+							drop image here, or click to select image.
 						</Text>
 					</Flex>
 				</Flex>
