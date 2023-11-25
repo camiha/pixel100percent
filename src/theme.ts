@@ -7,13 +7,13 @@ const theme = extendTheme({
 				margin: 0,
 				padding: 0,
 				bg: "rgba(0,0,0,0)",
-				"-webkit-user-drag": "none",
+				WebkitUserDrag: "none",
 			},
 			"::-webkit-scrollbar": {
 				display: "none",
 			},
 			img: {
-				"-webkit-user-drag": "none",
+				WebkitUserDrag: "none",
 			},
 		}),
 	},

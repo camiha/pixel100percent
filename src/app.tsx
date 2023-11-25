@@ -47,7 +47,7 @@ function App() {
 				p={3}
 				position="fixed"
 				sx={{
-					"-webkit-app-region": "drag",
+					WebkitAppRegion: "drag",
 				}}
 				top={0}
 				transition="opacity 0.2s ease-in-out"
@@ -113,7 +113,7 @@ function App() {
 					<Button
 						opacity={isMouseOver ? 1 : 0.2}
 						sx={{
-							"-webkit-app-region": "drag",
+							WebkitAppRegion: "drag",
 						}}
 					>
 						<Icon as={SlCursorMove} />
