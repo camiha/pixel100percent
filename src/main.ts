@@ -17,6 +17,8 @@ const createWindow = () => {
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
 		},
+		transparent: true,
+		frame: false,
 	});
 
 	// and load the index.html of the app.
@@ -30,6 +32,8 @@ const createWindow = () => {
 
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools();
+
+	mainWindow.setAlwaysOnTop(true, "floating");
 };
 
 // This method will be called when Electron has finished
