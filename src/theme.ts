@@ -1,4 +1,6 @@
 import { StyleFunctionProps, extendTheme } from "@chakra-ui/react";
+import "@fontsource/noto-sans/400.css";
+import "@fontsource/noto-sans/700.css";
 
 const theme = extendTheme({
 	styles: {
@@ -16,6 +18,10 @@ const theme = extendTheme({
 				WebkitUserDrag: "none",
 			},
 		}),
+	},
+	fonts: {
+		heading: `'Noto Sans', sans-serif`,
+		body: `'Noto Sans', sans-serif`,
 	},
 	components: {
 		Button: {

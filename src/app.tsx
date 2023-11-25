@@ -57,8 +57,8 @@ function App() {
 				<Heading as="h1" size="xs">
 					pixelcomplete
 				</Heading>
-				<Heading as="p" fontWeight={500} size="xs">
-					⌘ + Q for quit App
+				<Heading as="p" fontWeight={400} size="xs">
+					CMD + Q for quit App
 				</Heading>
 			</Flex>
 
