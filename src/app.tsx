@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { ImageDropzone } from "./components/image-dropzone";
+import { SliderOpacity } from "./components/slider-opacity";
 
 function App() {
 	const [imageData, setImageData] = useState("");
@@ -102,29 +103,10 @@ function App() {
 							<Icon as={SlTrash} />
 						</Button>
 					</Flex>
-					<Flex
-						bg="white"
-						borderRadius={4}
-						marginX="auto"
-						maxWidth={128}
-						px={2}
-						py={1}
-						width="full"
-						opacity={isMouseOver ? 1 : 0}
-						transition="opacity 0.2s ease-in-out"
-					>
-						<Slider
-							aria-label="slider-ex-1"
-							defaultValue={100}
-							min={10}
-							onChange={handleOnValueChange}
-						>
-							<SliderTrack>
-								<SliderFilledTrack />
-							</SliderTrack>
-							<SliderThumb />
-						</Slider>
-					</Flex>
+					<SliderOpacity
+						isMouseOver={isMouseOver}
+						handleOnValueChange={handleOnValueChange}
+					/>
 					<Flex
 						position="absolute"
 						right={4}
