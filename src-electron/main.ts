@@ -45,10 +45,6 @@ const createWindow = () => {
 app.on("ready", () => {
 	createWindow();
 
-	globalShortcut.register("Command+N", () => {
-		createWindow();
-	});
-
 	ipcMain.handle("open-github-repo", () => {
 		shell.openExternal("https://github.com/camiha/pixelcomplete");
 	});
