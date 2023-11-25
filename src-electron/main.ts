@@ -2,7 +2,7 @@ declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
 declare const MAIN_WINDOW_VITE_NAME: string;
 
 import path from "path";
-import { BrowserWindow, app, globalShortcut, ipcMain, shell } from "electron";
+import { BrowserWindow, Menu, app, ipcMain, shell } from "electron";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -37,6 +37,25 @@ const createWindow = () => {
 	// mainWindow.webContents.openDevTools();
 
 	mainWindow.setAlwaysOnTop(true, "floating");
+	mainWindow.webContents.on("before-input-event", (event, input) => {
+		if (input.type === "keyDown") {
+			const pos = mainWindow.getPosition();
+			switch (input.key) {
+				case "ArrowUp":
+					mainWindow.setPosition(pos[0], pos[1] - 1);
+					break;
+				case "ArrowDown":
+					mainWindow.setPosition(pos[0], pos[1] + 1);
+					break;
+				case "ArrowLeft":
+					mainWindow.setPosition(pos[0] - 1, pos[1]);
+					break;
+				case "ArrowRight":
+					mainWindow.setPosition(pos[0] + 1, pos[1]);
+					break;
+			}
+		}
+	});
 };
 
 // This method will be called when Electron has finished
@@ -69,3 +88,40 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+// Create the application menu
+const menu = Menu.buildFromTemplate([
+	{
+		label: "File",
+		submenu: [
+			{
+				label: "New Window",
+				accelerator: "CmdOrCtrl+N", // Shortcut for "Cmd + N" on macOS and "Ctrl + N" on Windows
+				click() {
+					createWindow();
+				},
+			},
+			{
+				label: "Close Window",
+				accelerator: "CmdOrCtrl+W",
+				click() {
+					if (BrowserWindow.getAllWindows().length !== 0) {
+						const target = BrowserWindow.getFocusedWindow();
+						if (target) {
+							target.close();
+						}
+					}
+				},
+			},
+			{
+				label: "Quit",
+				accelerator: "CmdOrCtrl+Q",
+				click() {
+					app.quit();
+				},
+			},
+		],
+	},
+]);
+
+Menu.setApplicationMenu(menu);
