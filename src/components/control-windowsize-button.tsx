@@ -23,7 +23,6 @@ export const ControlWindowsizeButton = () => {
 	const { register, handleSubmit } = useForm<Inputs>();
 
 	const onSubmit: SubmitHandler<Inputs> = (data) => {
-		console.log(data);
 		window.resizeTo(data.width, data.height);
 		onClose();
 	};
