@@ -67,7 +67,7 @@ function App() {
 					pixel100percent
 				</Heading>
 				<Heading as="p" size="xs" fontWeight={500}>
-					⌘ + q for quit App
+					⌘ + Q for quit App
 				</Heading>
 			</Flex>
 
