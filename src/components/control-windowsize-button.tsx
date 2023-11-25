@@ -46,6 +46,7 @@ export const ControlWindowsizeButton = () => {
 									<NumberInput size="xs" defaultValue={750} min={300}>
 										<NumberInputField
 											{...register("width", { required: true })}
+											borderRadius={4}
 										/>
 									</NumberInput>
 								</FormControl>
@@ -54,6 +55,7 @@ export const ControlWindowsizeButton = () => {
 									<NumberInput size="xs" defaultValue={600} min={300}>
 										<NumberInputField
 											{...register("height", { required: true })}
+											borderRadius={4}
 										/>
 									</NumberInput>
 								</FormControl>
