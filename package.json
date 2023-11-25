@@ -1,6 +1,6 @@
 {
-	"name": "electron-vite-react-app",
-	"productName": "electron-vite-react-app",
+	"name": "pixel100percent",
+	"productName": "pixel100percent",
 	"version": "1.0.0",
 	"description": "My Electron application description",
 	"main": ".vite/build/main.js",
