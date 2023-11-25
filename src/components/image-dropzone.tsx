@@ -17,7 +17,8 @@ export const ImageDropzone = ({
 				"--chakra-colors-chakra-body-bg",
 				"transparent",
 			);
-			setImageData(reader.result as string);
+			if (typeof reader.result !== "string") return;
+			setImageData(reader.result);
 		};
 	};
 
