@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { DiGithubBadge } from "react-icons/di";
 import { SlCursorMove, SlTrash } from "react-icons/sl";
 
-import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
 
 import { ControlWindowsizeButton } from "./components/control-windowsize-button";
 import { ImageDropzone } from "./components/image-dropzone";
@@ -27,6 +28,10 @@ function App() {
 
 	const handleMouseLeave = () => {
 		setIsMouseOver(false);
+	};
+
+	const handleOnClickLink = () => {
+		window.pixelcompleteApi.openGithubRepo();
 	};
 
 	return (
@@ -81,6 +86,15 @@ function App() {
 			</Flex>
 
 			<Flex bottom={4} position="fixed" width="full" zIndex={9999}>
+				{!imageData && (
+					<Link onClick={handleOnClickLink}>
+						<Flex ml={4} justify="center" align="center" gap={1}>
+							<Icon w={8} h={8} as={DiGithubBadge} />
+							<Text>visit repo</Text>
+						</Flex>
+					</Link>
+				)}
+
 				{imageData && (
 					<>
 						<Flex

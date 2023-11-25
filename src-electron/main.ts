@@ -2,7 +2,7 @@ declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
 declare const MAIN_WINDOW_VITE_NAME: string;
 
 import path from "path";
-import { BrowserWindow, app, globalShortcut } from "electron";
+import { BrowserWindow, app, globalShortcut, ipcMain, shell } from "electron";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -16,6 +16,7 @@ const createWindow = () => {
 		minWidth: 300,
 		height: 600,
 		minHeight: 300,
+		title: "pixelcomplete",
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
 		},
@@ -34,6 +35,10 @@ const createWindow = () => {
 
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools();
+
+	ipcMain.handle("open-github-repo", () => {
+		shell.openExternal("https://github.com/camiha/pixelcomplete");
+	});
 
 	mainWindow.setAlwaysOnTop(true, "floating");
 };
