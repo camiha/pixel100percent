@@ -45,18 +45,17 @@ export const ImageDropzone = ({
 					<Spinner size="lg" />
 				</Flex>
 			) : (
-				<Dropzone onDrop={handleOnDrop}>
-					{({ getRootProps, getInputProps }) => (
-						<Flex
-							{...getRootProps()}
-							justify="center"
-							position="fixed"
-							px={12}
-							top="50%"
-							transform="translateY(-50%)"
-							width="100%"
-							zIndex={999}
-						>
+				<Flex
+					justify="center"
+					position="fixed"
+					px={12}
+					top="50%"
+					transform="translateY(-50%)"
+					width="100%"
+					zIndex={999}
+				>
+					<Dropzone onDrop={handleOnDrop}>
+						{({ getRootProps, getInputProps }) => (
 							<Flex
 								align="center"
 								borderColor="black"
@@ -68,6 +67,7 @@ export const ImageDropzone = ({
 								px={8}
 								py={12}
 								width="full"
+								{...getRootProps()}
 							>
 								<input {...getInputProps()} />
 								<Icon height={8} as={SlPicture} width={8} />
@@ -75,9 +75,9 @@ export const ImageDropzone = ({
 									drop image here, or click to select image.
 								</Text>
 							</Flex>
-						</Flex>
-					)}
-				</Dropzone>
+						)}
+					</Dropzone>
+				</Flex>
 			)}
 		</>
 	);
