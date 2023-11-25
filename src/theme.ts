@@ -32,7 +32,7 @@ const theme = extendTheme({
 				},
 				outline: {
 					border: "1px solid",
-					borderColor: "black",
+					borderColor: "gray.200",
 					bgColor: "white",
 					color: "black",
 				},
