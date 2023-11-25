@@ -40,30 +40,30 @@ function App() {
 
 	return (
 		<Box
-			position="relative"
-			onMouseOver={handleMouseOver}
 			onMouseLeave={handleMouseLeave}
+			onMouseOver={handleMouseOver}
+			position="relative"
 		>
 			<Flex
-				position="fixed"
-				justify="space-between"
+				backgroundColor="white"
+				color="black"
 				gap={1}
+				justify="space-between"
+				opacity={imageData === "" ? 1 : isMouseOver ? 1 : 0}
 				p={3}
-				top={0}
-				width="100%"
-				zIndex={9999}
+				position="fixed"
 				sx={{
 					"-webkit-app-region": "drag",
 				}}
-				color="black"
-				backgroundColor="white"
-				opacity={imageData === "" ? 1 : isMouseOver ? 1 : 0}
+				top={0}
 				transition="opacity 0.2s ease-in-out"
+				width="100%"
+				zIndex={9999}
 			>
 				<Heading as="h1" size="xs">
 					pixelcomplete
 				</Heading>
-				<Heading as="p" size="xs" fontWeight={500}>
+				<Heading as="p" fontWeight={500} size="xs">
 					⌘ + Q for quit App
 				</Heading>
 			</Flex>
@@ -73,8 +73,8 @@ function App() {
 			<Flex opacity={imageOpacity}>
 				{imageData && (
 					<img
-						src={imageData}
 						alt=""
+						src={imageData}
 						style={{
 							position: "relative",
 							zIndex: 99,
@@ -88,21 +88,21 @@ function App() {
 
 			{imageData && (
 				<Flex
-					position="fixed"
-					width="full"
 					bottom={4}
-					zIndex={9999}
-					transition="opacity 0.2s ease-in-out"
 					opacity={isMouseOver ? 1 : 0}
+					position="fixed"
+					transition="opacity 0.2s ease-in-out"
+					width="full"
+					zIndex={9999}
 				>
 					<Flex
-						width="full"
+						bg="white"
+						borderRadius={4}
 						marginX="auto"
 						maxWidth={128}
-						py={1}
 						px={2}
-						borderRadius={4}
-						bg="white"
+						py={1}
+						width="full"
 					>
 						<Slider
 							aria-label="slider-ex-1"

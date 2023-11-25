@@ -26,29 +26,29 @@ export const ImageDropzone = ({
 		<Dropzone onDrop={handleOnDrop}>
 			{({ getRootProps, getInputProps }) => (
 				<Flex
-					position="fixed"
-					justify="center"
-					top="50%"
-					width="100%"
-					transform="translateY(-50%)"
-					zIndex={999}
-					px={12}
 					{...getRootProps()}
+					justify="center"
+					position="fixed"
+					px={12}
+					top="50%"
+					transform="translateY(-50%)"
+					width="100%"
+					zIndex={999}
 				>
 					<Flex
-						direction="column"
 						align="center"
+						borderColor="#000"
+						borderRadius={8}
+						borderStyle="dashed"
+						borderWidth={2}
+						direction="column"
 						gap={2}
 						px={8}
 						py={12}
 						width="full"
-						borderRadius={8}
-						borderStyle="dashed"
-						borderWidth={2}
-						borderColor="#000"
 					>
 						<input {...getInputProps()} />
-						<Icon as={SlPicture} width={8} height={8} />
+						<Icon height={8} as={SlPicture} width={8} />
 						<Text fontWeight="bold" textAlign="center">
 							drop image here, or click to select image.
 						</Text>
