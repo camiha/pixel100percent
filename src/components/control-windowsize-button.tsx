@@ -63,7 +63,7 @@ export const ControlWindowsizeButton = ({
 									</NumberInput>
 								</FormControl>
 							</Flex>
-							<Button type="submit" size="sm">
+							<Button type="submit" size="sm" variant="outline">
 								Update
 							</Button>
 						</Flex>
