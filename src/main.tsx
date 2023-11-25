@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
 
-// import "@fontsource/titillium-web/400.css";
 import "./theme-config.css";
 
 import { ChakraProvider } from "@chakra-ui/react";
