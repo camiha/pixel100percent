@@ -1,8 +1,8 @@
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
 declare const MAIN_WINDOW_VITE_NAME: string;
 
-import { app, BrowserWindow, globalShortcut } from "electron";
 import path from "path";
+import { BrowserWindow, app, globalShortcut } from "electron";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -33,7 +33,7 @@ const createWindow = () => {
 	}
 
 	// Open the DevTools.
-	// mainWindow.webContents.openDevTools();
+	mainWindow.webContents.openDevTools();
 
 	mainWindow.setAlwaysOnTop(true, "floating");
 };

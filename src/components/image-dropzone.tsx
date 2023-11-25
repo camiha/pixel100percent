@@ -1,6 +1,6 @@
-import { SlPicture } from "react-icons/sl";
+import { Flex, Icon, Text } from "@chakra-ui/react";
 import Dropzone from "react-dropzone";
-import { Flex, Text, Icon } from "@chakra-ui/react";
+import { SlPicture } from "react-icons/sl";
 
 export const ImageDropzone = ({
 	setImageData,

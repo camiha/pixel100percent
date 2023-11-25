@@ -5,9 +5,9 @@ import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
 
 import {
 	Slider,
-	SliderTrack,
 	SliderFilledTrack,
 	SliderThumb,
+	SliderTrack,
 } from "@chakra-ui/react";
 
 import { ImageDropzone } from "./components/image-dropzone";
