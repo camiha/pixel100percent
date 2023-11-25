@@ -32,13 +32,15 @@ export const ImageDropzone = ({
 						width="100%"
 						transform="translateY(-50%)"
 						zIndex={999}
+						px={12}
 					>
 						<Flex
 							direction="column"
 							align="center"
 							gap={2}
-							p={4}
-							maxWidth={256}
+							px={8}
+							py={12}
+							width="full"
 							borderRadius={8}
 							borderStyle="dashed"
 							borderWidth={2}
