@@ -56,8 +56,9 @@ function App() {
 					"-webkit-app-region": "drag",
 				}}
 				color="black"
-				backgroundColor={isMouseOver ? "white" : "transparent"}
-				transition="background-color 0.2s ease-in-out"
+				backgroundColor="white"
+				opacity={imageData === "" ? 1 : isMouseOver ? 1 : 0}
+				transition="opacity 0.2s ease-in-out"
 			>
 				<Heading as="h1" size="xs">
 					pixel100percent
