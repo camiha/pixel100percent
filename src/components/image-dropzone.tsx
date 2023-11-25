@@ -1,6 +1,6 @@
-import { AddIcon } from "@chakra-ui/icons";
+import { SlPicture } from "react-icons/sl";
 import Dropzone from "react-dropzone";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Icon } from "@chakra-ui/react";
 
 export const ImageDropzone = ({
 	setImageData,
@@ -14,6 +14,10 @@ export const ImageDropzone = ({
 		reader.readAsDataURL(acceptedFile);
 		reader.onload = () => {
 			setImageData(reader.result as string);
+			document.documentElement.style.setProperty(
+				"--chakra-colors-chakra-body-bg",
+				"transparent",
+			);
 		};
 	};
 
@@ -41,7 +45,7 @@ export const ImageDropzone = ({
 							borderColor="#000"
 						>
 							<input {...getInputProps()} />
-							<AddIcon width={8} height={8} />
+							<Icon as={SlPicture} width={8} height={8} />
 							<Text fontWeight="bold" textAlign="center">
 								drop files here, or click to select files.
 							</Text>

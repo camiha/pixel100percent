@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { SlTrash } from "react-icons/sl";
 
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
 
 import {
 	Slider,
@@ -11,26 +12,42 @@ import {
 
 import { ImageDropzone } from "./components/image-dropzone";
 
-import { debugBaseImage } from "./image";
-
 function App() {
-	const [imageData, setImageData] = useState(debugBaseImage);
+	const [imageData, setImageData] = useState("");
 	const [imageOpacity, setImageOpacity] = useState(1);
+	const [isMouseOver, setIsMouseOver] = useState(false);
 
 	const handleOnValueChange = (value: number) => {
 		setImageOpacity(value / 100);
 		document.documentElement.style.setProperty(
 			"--chakra-colors-chakra-body-bg",
-			`rgba(255, 255, 255, ${value / 100})`,
+			"transparent",
 		);
 	};
 
 	const handleClearImage = () => {
 		setImageData("");
+		setImageOpacity(1);
+		document.documentElement.style.setProperty(
+			"--chakra-colors-chakra-body-bg",
+			"#fff",
+		);
+	};
+
+	const handleMouseOver = () => {
+		setIsMouseOver(true);
+	};
+
+	const handleMouseLeave = () => {
+		setIsMouseOver(false);
 	};
 
 	return (
-		<Box>
+		<Box
+			position="relative"
+			onMouseOver={handleMouseOver}
+			onMouseLeave={handleMouseLeave}
+		>
 			<Flex
 				position="fixed"
 				justify="space-between"
@@ -43,16 +60,17 @@ function App() {
 					"-webkit-app-region": "drag",
 				}}
 				color="black"
-				backgroundColor="white"
+				backgroundColor={isMouseOver ? "white" : "transparent"}
+				transition="background-color 0.2s ease-in-out"
 			>
 				<Heading as="h1" size="xs">
 					pixel100percent
 				</Heading>
-				<Heading as="p" size="xs">
+				<Heading as="p" size="xs" fontWeight={500}>
 					⌘ + q for quit App
 				</Heading>
 			</Flex>
-			{/* )} */}
+
 			{!imageData && <ImageDropzone setImageData={setImageData} />}
 
 			<Flex opacity={imageOpacity}>
@@ -71,36 +89,43 @@ function App() {
 				)}
 			</Flex>
 
-			<Flex position="fixed" width="full" bottom={0} zIndex={9999}>
+			{imageData && (
 				<Flex
-					direction="column"
-					justify="center"
-					gap="4"
-					style={{
-						maxWidth: 256,
-						width: "100%",
-						margin: "0 auto",
-						height: 64,
-					}}
+					position="fixed"
+					width="full"
+					bottom={4}
+					zIndex={9999}
+					transition="opacity 0.2s ease-in-out"
+					opacity={isMouseOver ? 1 : 0}
 				>
-					<Slider
-						aria-label="slider-ex-1"
-						defaultValue={100}
-						min={10}
-						onChange={handleOnValueChange}
+					<Flex
+						width="full"
+						marginX="auto"
+						maxWidth={128}
+						py={1}
+						px={2}
+						borderRadius={4}
+						bg="white"
 					>
-						<SliderTrack>
-							<SliderFilledTrack />
-						</SliderTrack>
-						<SliderThumb />
-					</Slider>
+						<Slider
+							aria-label="slider-ex-1"
+							defaultValue={100}
+							min={10}
+							onChange={handleOnValueChange}
+						>
+							<SliderTrack>
+								<SliderFilledTrack />
+							</SliderTrack>
+							<SliderThumb />
+						</Slider>
+					</Flex>
+					<Flex position="absolute" right={4} bottom={0}>
+						<Button colorScheme="blue" size="sm" onClick={handleClearImage}>
+							<Icon as={SlTrash} />
+						</Button>
+					</Flex>
 				</Flex>
-			</Flex>
-			<Flex position="fixed" bottom={4} zIndex={9999} right={4}>
-				<Button size="sm" onClick={handleClearImage}>
-					Clear
-				</Button>
-			</Flex>
+			)}
 		</Box>
 	);
 }
