@@ -88,6 +88,21 @@ function App() {
 			{imageData && (
 				<Flex bottom={4} position="fixed" width="full" zIndex={9999}>
 					<Flex
+						position="absolute"
+						left={4}
+						bottom={0}
+						gap={2}
+						direction="column"
+					>
+						<Button
+							onClick={handleClearImage}
+							opacity={isMouseOver ? 1 : 0}
+							transition="opacity 0.2s ease-in-out"
+						>
+							<Icon as={SlTrash} />
+						</Button>
+					</Flex>
+					<Flex
 						bg="white"
 						borderRadius={4}
 						marginX="auto"
@@ -118,17 +133,7 @@ function App() {
 						direction="column"
 					>
 						<Button
-							colorScheme="blue"
-							size="sm"
-							onClick={handleClearImage}
-							opacity={isMouseOver ? 1 : 0}
-							transition="opacity 0.2s ease-in-out"
-						>
-							<Icon as={SlTrash} />
-						</Button>
-						<Button
-							opacity={isMouseOver ? 1 : 0.5}
-							size="sm"
+							opacity={isMouseOver ? 1 : 0.2}
 							sx={{
 								"-webkit-app-region": "drag",
 							}}
