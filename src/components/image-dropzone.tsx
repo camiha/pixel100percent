@@ -13,10 +13,6 @@ export const ImageDropzone = ({
 		const reader = new FileReader();
 		reader.readAsDataURL(acceptedFile);
 		reader.onload = () => {
-			document.documentElement.style.setProperty(
-				"--chakra-colors-chakra-body-bg",
-				"transparent",
-			);
 			if (typeof reader.result !== "string") return;
 			setImageData(reader.result);
 		};

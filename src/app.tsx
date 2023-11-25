@@ -24,10 +24,6 @@ function App() {
 	const handleClearImage = () => {
 		setImageData("");
 		setImageOpacity(1);
-		document.documentElement.style.setProperty(
-			"--chakra-colors-chakra-body-bg",
-			"#fff",
-		);
 	};
 
 	const handleMouseOver = () => {
@@ -43,6 +39,9 @@ function App() {
 			onMouseLeave={handleMouseLeave}
 			onMouseOver={handleMouseOver}
 			position="relative"
+			backgroundColor={imageData === "" ? "white" : "transparent"}
+			minHeight="100vh"
+			width="100vw"
 		>
 			<Flex
 				backgroundColor="white"

@@ -1,10 +1,7 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
-
-import "./theme-config.css";
-
-import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
 
 const root = document.getElementById("root");
