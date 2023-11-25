@@ -2,7 +2,15 @@ import { useState } from "react";
 import { DiGithubBadge } from "react-icons/di";
 import { SlCursorMove, SlTrash } from "react-icons/sl";
 
-import { Box, Button, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Flex,
+	Heading,
+	Icon,
+	IconButton,
+	Text,
+} from "@chakra-ui/react";
 
 import { ControlWindowsizeButton } from "./components/control-windowsize-button";
 import { ImageDropzone } from "./components/image-dropzone";
@@ -87,12 +95,12 @@ function App() {
 
 			<Flex bottom={4} position="fixed" width="full" zIndex={9999}>
 				{!imageData && (
-					<Link onClick={handleOnClickLink}>
-						<Flex ml={4} justify="center" align="center" gap={1}>
+					<Flex ml={4}>
+						<Button onClick={handleOnClickLink} gap={1} variant="outline">
 							<Icon w={8} h={8} as={DiGithubBadge} />
 							<Text>visit repo</Text>
-						</Flex>
-					</Link>
+						</Button>
+					</Flex>
 				)}
 
 				{imageData && (
