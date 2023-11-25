@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SlTrash } from "react-icons/sl";
+import { SlCursorMove, SlTrash } from "react-icons/sl";
 
 import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
 
@@ -86,14 +86,7 @@ function App() {
 			</Flex>
 
 			{imageData && (
-				<Flex
-					bottom={4}
-					opacity={isMouseOver ? 1 : 0}
-					position="fixed"
-					transition="opacity 0.2s ease-in-out"
-					width="full"
-					zIndex={9999}
-				>
+				<Flex bottom={4} position="fixed" width="full" zIndex={9999}>
 					<Flex
 						bg="white"
 						borderRadius={4}
@@ -102,6 +95,8 @@ function App() {
 						px={2}
 						py={1}
 						width="full"
+						opacity={isMouseOver ? 1 : 0}
+						transition="opacity 0.2s ease-in-out"
 					>
 						<Slider
 							aria-label="slider-ex-1"
@@ -115,9 +110,30 @@ function App() {
 							<SliderThumb />
 						</Slider>
 					</Flex>
-					<Flex position="absolute" right={4} bottom={0}>
-						<Button colorScheme="blue" size="sm" onClick={handleClearImage}>
+					<Flex
+						position="absolute"
+						right={4}
+						bottom={0}
+						gap={2}
+						direction="column"
+					>
+						<Button
+							colorScheme="blue"
+							size="sm"
+							onClick={handleClearImage}
+							opacity={isMouseOver ? 1 : 0}
+							transition="opacity 0.2s ease-in-out"
+						>
 							<Icon as={SlTrash} />
+						</Button>
+						<Button
+							opacity={isMouseOver ? 1 : 0.5}
+							size="sm"
+							sx={{
+								"-webkit-app-region": "drag",
+							}}
+						>
+							<Icon as={SlCursorMove} />
 						</Button>
 					</Flex>
 				</Flex>
