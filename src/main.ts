@@ -13,7 +13,9 @@ const createWindow = () => {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
 		width: 800,
+		minWidth: 300,
 		height: 600,
+		minHeight: 300,
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
 		},
@@ -31,7 +33,7 @@ const createWindow = () => {
 	}
 
 	// Open the DevTools.
-	// mainWindow.webContents.openDevTools();
+	mainWindow.webContents.openDevTools();
 
 	mainWindow.setAlwaysOnTop(true, "floating");
 };

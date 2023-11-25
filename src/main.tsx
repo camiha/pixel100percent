@@ -5,15 +5,15 @@ import App from "./app";
 import "@radix-ui/themes/styles.css";
 import "./theme-config.css";
 
-import { Theme } from "@radix-ui/themes";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("Root element not found");
 
 ReactDOM.createRoot(root).render(
 	<React.StrictMode>
-		<Theme>
+		<ChakraProvider>
 			<App />
-		</Theme>
+		</ChakraProvider>
 	</React.StrictMode>,
 );

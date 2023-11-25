@@ -1,3 +1,15 @@
+:root {
+  /* --color-page-background: transparent !important; */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+}
+
 h1 {
   -webkit-app-region: drag;
 }

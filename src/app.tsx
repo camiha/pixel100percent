@@ -1,32 +1,83 @@
-import { Flex, Heading, Text, Button, Slider, Box } from "@radix-ui/themes";
 import { useState } from "react";
 
-function App() {
-	const [windowOpacity, setWindowOpacity] = useState([100]);
+import { Box, Flex, Heading } from "@chakra-ui/react";
 
-	const handleOnValueChange = (value: number[]) => {
-		setWindowOpacity(value);
+import {
+	Slider,
+	SliderTrack,
+	SliderFilledTrack,
+	SliderThumb,
+} from "@chakra-ui/react";
+
+import { ImageDropzone } from "./components/image-dropzone";
+
+import { debugBaseImage } from "./image";
+
+function App() {
+	const [imageData, setImageData] = useState(debugBaseImage);
+	const [imageOpacity, setImageOpacity] = useState(1);
+
+	const handleOnValueChange = (value: number) => {
+		setImageOpacity(value / 100);
 		document.documentElement.style.setProperty(
-			"--color-page-background",
-			`rgba(255, 255, 255, ${value[0] / 100})`,
+			"--chakra-colors-chakra-body-bg",
+			`rgba(255, 255, 255, ${value / 100})`,
 		);
 	};
 
 	return (
-		<Flex direction="column" gap="4">
-			<Heading>React App</Heading>
-			<Flex direction="column" gap="2">
-				<Text>Hello from Radix Themes :)</Text>
-				<Button>Let's go</Button>
-				<Box p="2">
-					<Slider
-						min={10}
-						defaultValue={windowOpacity}
-						onValueChange={handleOnValueChange}
-					/>
-				</Box>
+		<Box>
+			<Flex
+				direction="column"
+				gap="1"
+				p="4"
+				position="relative"
+				height="100%"
+				width="100%"
+			>
+				<Heading as="h1">pixel100percent</Heading>
 			</Flex>
-		</Flex>
+
+			<Flex position="fixed" width="full" bottom={0} zIndex={999}>
+				<Flex
+					direction="column"
+					justify="center"
+					gap="4"
+					style={{
+						maxWidth: 256,
+						width: "100%",
+						margin: "0 auto",
+						height: 64,
+					}}
+				>
+					<Slider
+						aria-label="slider-ex-1"
+						defaultValue={100}
+						min={10}
+						onChange={handleOnValueChange}
+					>
+						<SliderTrack>
+							<SliderFilledTrack />
+						</SliderTrack>
+						<SliderThumb />
+					</Slider>
+				</Flex>
+			</Flex>
+			<ImageDropzone setImageData={setImageData} />
+			{imageData && (
+				<Flex>
+					<img
+						src={imageData}
+						alt="uploaded"
+						style={{
+							width: "100%",
+							backgroundImage: `url('${imageData}')`,
+							opacity: imageOpacity,
+						}}
+					/>
+				</Flex>
+			)}
+		</Box>
 	);
 }
 
