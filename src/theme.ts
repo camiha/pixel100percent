@@ -19,8 +19,15 @@ const theme = extendTheme({
 	},
 	components: {
 		Button: {
+			variants: {
+				solid: {
+					bgColor: "white",
+					color: "black",
+				},
+			},
 			defaultProps: {
-				colorScheme: "blue",
+				bgColor: "white",
+				color: "black",
 			},
 		},
 	},
