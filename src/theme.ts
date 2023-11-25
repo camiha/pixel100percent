@@ -12,6 +12,9 @@ const theme = extendTheme({
 			"::-webkit-scrollbar": {
 				display: "none",
 			},
+			img: {
+				"-webkit-user-drag": "none",
+			},
 		}),
 	},
 });
