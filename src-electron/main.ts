@@ -36,10 +36,6 @@ const createWindow = () => {
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools();
 
-	ipcMain.handle("open-github-repo", () => {
-		shell.openExternal("https://github.com/camiha/pixelcomplete");
-	});
-
 	mainWindow.setAlwaysOnTop(true, "floating");
 };
 
@@ -51,6 +47,10 @@ app.on("ready", () => {
 
 	globalShortcut.register("Command+N", () => {
 		createWindow();
+	});
+
+	ipcMain.handle("open-github-repo", () => {
+		shell.openExternal("https://github.com/camiha/pixelcomplete");
 	});
 });
 
