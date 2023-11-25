@@ -24,10 +24,15 @@ const theme = extendTheme({
 					bgColor: "white",
 					color: "black",
 				},
+				outline: {
+					border: "1px solid",
+					borderColor: "black",
+					bgColor: "white",
+					color: "black",
+				},
 			},
 			defaultProps: {
-				bgColor: "white",
-				color: "black",
+				variant: "solid",
 			},
 		},
 	},

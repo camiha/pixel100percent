@@ -33,7 +33,7 @@ export const ImageDropzone = ({
 				>
 					<Flex
 						align="center"
-						borderColor="#000"
+						borderColor="black"
 						borderRadius={8}
 						borderStyle="dashed"
 						borderWidth={2}

@@ -80,44 +80,46 @@ function App() {
 				)}
 			</Flex>
 
-			{imageData && (
-				<Flex bottom={4} position="fixed" width="full" zIndex={9999}>
-					<Flex
-						position="absolute"
-						left={4}
-						bottom={0}
-						gap={2}
-						direction="column"
-						opacity={isMouseOver ? 1 : 0}
-						transition="opacity 0.2s ease-in-out"
-					>
-						<ControlWindowsizeButton />
-						<Button onClick={handleClearImage}>
-							<Icon as={SlTrash} />
-						</Button>
-					</Flex>
-					<SliderOpacity
-						isMouseOver={isMouseOver}
-						handleOnValueChange={handleOnValueChange}
-					/>
-					<Flex
-						position="absolute"
-						right={4}
-						bottom={0}
-						gap={2}
-						direction="column"
-					>
-						<Button
-							opacity={isMouseOver ? 1 : 0.2}
-							sx={{
-								"-webkit-app-region": "drag",
-							}}
+			<Flex bottom={4} position="fixed" width="full" zIndex={9999}>
+				{imageData && (
+					<>
+						<Flex
+							position="absolute"
+							left={4}
+							bottom={0}
+							gap={2}
+							direction="column"
+							opacity={isMouseOver ? 1 : 0}
+							transition="opacity 0.2s ease-in-out"
 						>
-							<Icon as={SlCursorMove} />
-						</Button>
-					</Flex>
+							<ControlWindowsizeButton />
+							<Button onClick={handleClearImage}>
+								<Icon as={SlTrash} />
+							</Button>
+						</Flex>
+						<SliderOpacity
+							isMouseOver={isMouseOver}
+							handleOnValueChange={handleOnValueChange}
+						/>
+					</>
+				)}
+				<Flex
+					position="absolute"
+					right={4}
+					bottom={0}
+					gap={2}
+					direction="column"
+				>
+					<Button
+						opacity={isMouseOver ? 1 : 0.2}
+						sx={{
+							"-webkit-app-region": "drag",
+						}}
+					>
+						<Icon as={SlCursorMove} />
+					</Button>
 				</Flex>
-			)}
+			</Flex>
 		</Box>
 	);
 }
