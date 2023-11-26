@@ -44,9 +44,13 @@
 				"title": "pixelcomplete",
 				"width": 800,
 				"height": 600,
+				"minWidth": 300,
+				"minHeight": 300,
 				"alwaysOnTop": true,
 				"transparent": true,
-				"titleBarStyle": "Overlay"
+				"titleBarStyle": "Overlay",
+				"hiddenTitle": true,
+				"fileDropEnabled": false
 			}
 		],
 		"macOSPrivateApi": true

@@ -7,6 +7,8 @@ const theme = extendTheme({
 		global: () => ({
 			body: {
 				bg: "rgba(0,0,0,0)",
+				useSelect: "none",
+				WebkitUserSelect: "none",
 			},
 			"::-webkit-scrollbar": {
 				display: "none",
@@ -17,6 +19,14 @@ const theme = extendTheme({
 		Flex: {
 			baseStyle: {
 				userDrag: "none",
+			},
+			variants: {
+				dark: {
+					bg: "gray.900",
+				},
+				light: {
+					bg: "white",
+				},
 			},
 		},
 	},
