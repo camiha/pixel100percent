@@ -25,11 +25,15 @@
       "source.organizeImports.biome": true
     }
   },
-
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
   "cSpell.words": [
     "Chakra",
     "fontsource",
     "noto",
     "pixelcomplete",
+    "tauri"
   ]
 }
