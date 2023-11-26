@@ -30,6 +30,7 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "cSpell.words": [
+    "camiha",
     "Chakra",
     "fontsource",
     "noto",
