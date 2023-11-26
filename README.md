@@ -8,7 +8,7 @@ create semi-transparent window from image. for web frontend/design development s
 - change window opacity with slider.
 - support drag and drop file input.
 - change window size by number input.
-- move window by arrow keys.
+- move window by arrow keys. (opt + arrow / opt + shift + arrow)
 - toggle dark/light mode theme.
 
 ## Releases
