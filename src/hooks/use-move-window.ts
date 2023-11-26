@@ -3,9 +3,10 @@ import { useEffect } from "react";
 
 export const useMoveWindow = () => {
 	const handleKeyDown = async (event: KeyboardEvent) => {
+		if (!event.altKey) return;
+
 		event.preventDefault();
 		const { x, y } = await appWindow.outerPosition();
-
 		switch (event.key) {
 			case "ArrowUp":
 				await appWindow.setPosition(new LogicalPosition(x, y - 1));
