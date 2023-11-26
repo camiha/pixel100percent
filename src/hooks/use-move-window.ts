@@ -9,15 +9,31 @@ export const useMoveWindow = () => {
 		const { x, y } = await appWindow.outerPosition();
 		switch (event.key) {
 			case "ArrowUp":
+				if (event.shiftKey) {
+					await appWindow.setPosition(new LogicalPosition(x, y - 10));
+					break;
+				}
 				await appWindow.setPosition(new LogicalPosition(x, y - 1));
 				break;
 			case "ArrowDown":
+				if (event.shiftKey) {
+					await appWindow.setPosition(new LogicalPosition(x, y + 10));
+					break;
+				}
 				await appWindow.setPosition(new LogicalPosition(x, y + 1));
 				break;
 			case "ArrowLeft":
+				if (event.shiftKey) {
+					await appWindow.setPosition(new LogicalPosition(x - 10, y));
+					break;
+				}
 				await appWindow.setPosition(new LogicalPosition(x - 1, y));
 				break;
 			case "ArrowRight":
+				if (event.shiftKey) {
+					await appWindow.setPosition(new LogicalPosition(x + 10, y));
+					break;
+				}
 				await appWindow.setPosition(new LogicalPosition(x + 1, y));
 				break;
 			default:
