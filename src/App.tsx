@@ -3,6 +3,7 @@ import { Box, Button, Flex, Icon, IconButton, Text } from "@chakra-ui/react";
 import { open } from "@tauri-apps/api/shell";
 import { DiGithubBadge } from "react-icons/di";
 import { ImageDropzone } from "./components/image-dropzone";
+import { PopoverWindowSizeButton } from "./components/popover-window-size-button";
 import { SliderOpacity } from "./components/slider-opacity";
 import { useChakraColorMode } from "./hooks/use-chakra-color-mode";
 import { useImageDropzone } from "./hooks/use-image-dropzone";
@@ -84,10 +85,11 @@ function App() {
 						bottom={4}
 						gap={2}
 						direction="column"
-						zIndex={999}
+						zIndex={9999}
 						opacity={isMouseOver ? 1 : 0}
 						transition="opacity 0.2s ease-in-out"
 					>
+						<PopoverWindowSizeButton />
 						<IconButton
 							bg={isLight ? "white" : "gray.900"}
 							aria-label="Clear Image"
