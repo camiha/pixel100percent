@@ -1,6 +1,9 @@
 import { Flex, Heading } from "@chakra-ui/react";
+import { useMoveWindow } from "./hooks/use-move-window";
 
 function App() {
+	useMoveWindow();
+
 	return (
 		<Flex
 			data-tauri-drag-region
