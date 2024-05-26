@@ -1,58 +1,34 @@
 {
-	"build": {
-		"beforeDevCommand": "pnpm dev",
-		"beforeBuildCommand": "pnpm build",
-		"devPath": "http://localhost:1420",
-		"distDir": "../dist"
-	},
-	"package": {
-		"productName": "pixelcomplete",
-		"version": "0.0.3"
-	},
-	"tauri": {
-		"allowlist": {
-			"all": false,
-			"shell": {
-				"all": false,
-				"open": true
-			},
-			"window": {
-				"setSize": true,
-				"setPosition": true,
-				"startDragging": true
-			}
-		},
-		"bundle": {
-			"active": true,
-			"targets": "all",
-			"identifier": "io.github.camiha.pixelcomplete",
-			"icon": [
-				"icons/32x32.png",
-				"icons/128x128.png",
-				"icons/128x128@2x.png",
-				"icons/icon.icns",
-				"icons/icon.ico"
-			]
-		},
-		"security": {
-			"csp": null
-		},
-		"windows": [
-			{
-				"fullscreen": false,
-				"resizable": true,
-				"title": "pixelcomplete",
-				"width": 750,
-				"height": 600,
-				"minWidth": 300,
-				"minHeight": 300,
-				"alwaysOnTop": true,
-				"transparent": true,
-				"titleBarStyle": "Overlay",
-				"hiddenTitle": true,
-				"fileDropEnabled": false
-			}
-		],
-		"macOSPrivateApi": true
-	}
+  "productName": "pixelcomplete",
+  "version": "0.0.0",
+  "identifier": "com.tauri.dev",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "pixelcomplete",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
 }
