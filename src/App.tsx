@@ -1,9 +1,24 @@
-import { Button } from "@/components/shadcn/ui/button";
+import { Slider } from "@/components/shadcn/ui/slider";
+import { useOpacitySlider } from "./hooks/use-opacity-slider";
 
 function App() {
+  const { opacity, handleOnValueChange } = useOpacitySlider();
+
   return (
-    <div>
-      <Button>hello</Button>
+    <div className="relative">
+      <div style={{ opacity }}>
+        <div className="bg-white h-screen">hello</div>
+      </div>
+      <div className="fixed bottom-4 w-48 left-1/2 -translate-x-1/2">
+        <Slider
+          defaultValue={[0]}
+          max={100}
+          step={1}
+          onValueChange={(values) => {
+            handleOnValueChange(values[0]);
+          }}
+        />
+      </div>
     </div>
   );
 }
