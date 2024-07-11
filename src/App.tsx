@@ -1,22 +1,24 @@
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import { invoke } from "@tauri-apps/api/tauri";
-// import "./App.css";
-
-import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+import { useOpacitySlider } from "@/hooks/use-opacity-slider";
 
 function App() {
-	// const [greetMsg, setGreetMsg] = useState("");
-	// const [name, setName] = useState("");
-
-	// async function greet() {
-	//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-	//   setGreetMsg(await invoke("greet", { name }));
-	// }
+	const { opacity, handleOnValueChange } = useOpacitySlider();
 
 	return (
-		<div>
-			<Button>Click me</Button>
+		<div className="relative">
+			<div style={{ opacity }}>
+				<div className="bg-white h-screen">hello</div>
+			</div>
+			<div className="fixed bottom-4 w-48 left-1/2 -translate-x-1/2">
+				<Slider
+					defaultValue={[100]}
+					max={100}
+					step={1}
+					onValueChange={(values) => {
+						handleOnValueChange(values[0]);
+					}}
+				/>
+			</div>
 		</div>
 	);
 }
