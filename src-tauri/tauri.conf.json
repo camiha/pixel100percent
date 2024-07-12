@@ -16,6 +16,18 @@
         "all": false,
         "open": true
       },
+      "protocol": {
+        "asset": true,
+        "assetScope": [ "**" ]
+      },
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "readFile": true,
+        "readDir": true,
+        "scope": ["**"]
+      },
       "window": {
         "setSize": true,
         "setPosition": true,
@@ -31,18 +43,17 @@
         "title": "pixelcomplete",
         "width": 800,
         "height": 600,
-        "transparent": true,
-        "titleBarStyle": "Overlay"
+        "transparent": true
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; img-src 'self' asset: https://asset.localhost"
     },
     "macOSPrivateApi": true,
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "io.github.camiha.pixelcomplete",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
