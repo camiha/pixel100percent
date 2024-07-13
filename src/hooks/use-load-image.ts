@@ -2,87 +2,107 @@ import { useEffect, useState } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { Store } from "tauri-plugin-store-api";
 
+type ImageCollection = {
+	file_path: string;
+	file_name: string;
+	created_at: string;
+	modified_at: string;
+};
+
 export const useStoredImage = () => {
-  const [_imageCollection, _setImageCollection] = useState<
-    { file_path: string }[]
-  >([]);
-  const store = new Store(".settings.dat");
+	const [imageCollection, setImageCollection] = useState<ImageCollection[]>([]);
+	const store = new Store(".settings.dat");
 
-  const imageCollection = _imageCollection
-    .map((image) => {
-      return {
-        ...image,
-        file_name: image.file_path.split("/").pop() ?? "",
-      };
-    })
-    .sort((a, b) => {
-      return a.file_name.localeCompare(b.file_name);
-    });
+	useEffect(() => {
+		(async () => {
+			const imageCollection =
+				await store.get<ImageCollection[]>("image-collection");
+			if (imageCollection) {
+				setImageCollection(imageCollection);
+			}
+		})();
+	}, [store]);
 
-  useEffect(() => {
-    (async () => {
-      const imageCollection = await store.get<{ file_path: string }[]>(
-        "image-collection"
-      );
-      if (imageCollection) {
-        _setImageCollection(imageCollection);
-      }
-    })();
-  }, [store]);
+	useEffect(() => {
+		const unlisten = listen("tauri://file-drop", (event) => {
+			(async () => {
+				const files = (event.payload as string[]).map((file) => {
+					return {
+						file_path: file,
+					};
+				});
 
-  useEffect(() => {
-    const unlisten = listen("tauri://file-drop", (event) => {
-      (async () => {
-        const files = (event.payload as string[]).map((file) => {
-          return {
-            file_path: file,
-          };
-        });
-        console.log(files);
+				const imageCollection =
+					(await store.get<ImageCollection[]>("image-collection")) ?? [];
 
-        const imageCollection = (await store.get<{ file_path: string }[]>(
-          "image-collection"
-        )) ?? [];
+				// if (imageCollection) {
+				// TODO: 重複している場合は追加しない
+				if (
+					imageCollection.some((image) =>
+						files.some((file) => file.file_path === image.file_path),
+					)
+				) {
+					return;
+				}
 
-        // if (imageCollection) {
-        // TODO: 重複している場合は追加しない
-        if (
-          imageCollection.some((image) =>
-            files.some((file) => file.file_path === image.file_path)
-          )
-        ) {
-          return;
-        }
+				const filesWithInfo = files.map((file) => {
+					return {
+						...file,
+						file_name: file.file_path.split("/").pop() ?? "",
+						created_at: new Date().toISOString(),
+						modified_at: new Date().toISOString(),
+					};
+				});
 
-        await store.set("image-collection", [...imageCollection, ...files]);
-        _setImageCollection(imageCollection);
-        await store.save();
-        // }
-      })();
-    });
+				await store.set("image-collection", [
+					...imageCollection,
+					...filesWithInfo,
+				]);
+				setImageCollection([...imageCollection, ...filesWithInfo]);
+				await store.save();
+				// }
+			})();
+		});
 
-    return () => {
-      unlisten.then((fn) => fn());
-    };
-  }, [store]);
+		return () => {
+			unlisten.then((fn) => fn());
+		};
+	}, [store]);
 
-  const handleRemoveImage = async (file_path: string) => {
-    const imageCollection = await store.get<{ file_path: string }[]>(
-      "image-collection"
-    );
+	const handleRemoveImage = async (file_path: string) => {
+		const imageCollection =
+			await store.get<ImageCollection[]>("image-collection");
 
-    if (imageCollection) {
-      const newImageCollection = imageCollection.filter(
-        (image) => image.file_path !== file_path
-      );
-      await store.set("image-collection", newImageCollection);
-      _setImageCollection(newImageCollection);
-      await store.save();
-    }
-  };
+		if (imageCollection) {
+			const newImageCollection = imageCollection.filter(
+				(image) => image.file_path !== file_path,
+			);
+			await store.set("image-collection", newImageCollection);
+			setImageCollection(newImageCollection);
+			await store.save();
+		}
+	};
 
-  return {
-    imageCollection,
-    handleRemoveImage,
-  };
+	// const handleSortDesc = () => {
+	// 	const sortedImageCollection = imageCollection.sort((a, b) => {
+	// 		return (
+	// 			new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+	// 		);
+	// 	});
+	// 	setImageCollection([...sortedImageCollection]);
+	// };
+
+	// const handleSortAsc = () => {
+	// 	const sortedImageCollection = imageCollection.sort((a, b) => {
+	// 		return (
+	// 			new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+	// 		);
+	// 	});
+	// 	setImageCollection([...sortedImageCollection]);
+	// };
+
+	return {
+		imageCollection,
+		handleRemoveImage,
+	};
 };
